@@ -14,4 +14,54 @@
       <engine name="cordova" version=">=3.1.0" /><!-- Needs cordova/urlutil -->
     </engines>
 
+    <!-- android -->
+    <platform name="android">
+        <js-module src="www/modal.js" name="Modal">
+            <clobbers target="modal" />
+        </js-module>
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="Modal">
+                <param name="android-package" value="kr.co.purpleworks.cordova.modal"/>
+            </feature>
+        </config-file>
+
+        <source-file src="src/android/InAppBrowser.java" target-dir="src/org/apache/cordova/inappbrowser" />
+        <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" />
+        <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" />
+
+        <!--  drawable src/android/resources -->
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_next_item.png" target="res/drawable-hdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_next_item.png" target="res/drawable-mdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_next_item.png" target="res/drawable-xhdpi/ic_action_next_item.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_next_item.png" target="res/drawable-xxhdpi/ic_action_next_item.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_previous_item.png" target="res/drawable-hdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_previous_item.png" target="res/drawable-mdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_previous_item.png" target="res/drawable-xhdpi/ic_action_previous_item.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_previous_item.png" target="res/drawable-xxhdpi/ic_action_previous_item.png" />
+
+        <resource-file src="src/android/res/drawable-hdpi/ic_action_remove.png" target="res/drawable-hdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-mdpi/ic_action_remove.png" target="res/drawable-mdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-xhdpi/ic_action_remove.png" target="res/drawable-xhdpi/ic_action_remove.png" />
+        <resource-file src="src/android/res/drawable-xxhdpi/ic_action_remove.png" target="res/drawable-xxhdpi/ic_action_remove.png" />
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <js-module src="www/modal.js" name="modal">
+            <clobbers target="modal" />
+        </js-module>
+        <config-file target="config.xml" parent="/*">
+            <feature name="modal">
+                <param name="ios-package" value="PPDModal" />
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/PPDModal.h" />
+	    <source-file src="src/ios/PPDModal.m" />
+
+	    <framework src="CoreGraphics.framework" />
+    </platform>
+
 </plugin>
