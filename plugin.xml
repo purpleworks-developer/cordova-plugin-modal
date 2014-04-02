@@ -25,7 +25,8 @@
             </feature>
         </config-file>
 
-<!--         <source-file src="src/android/InAppBrowser.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
+        <source-file src="src/android/Modal.java" target-dir="src/kr/co/purpleworks/cordova/modal" />
+        
 <!--         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 <!--         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 
