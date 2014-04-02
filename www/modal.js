@@ -8,3 +8,5 @@ var modal = {
     exec(null,null,'Modal','close',[]);
   }
 }
+
+module.exports = modal;
