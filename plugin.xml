@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+           id="kr.co.purpleworks.cordova.modal"
+      version="0.0.1">
+
+    <name>Modal</name>
+    <description>Cordova Modal Plugin</description>
+    <license>Apache 2.0</license>
+    <keywords>cordova,modal</keywords>
+    <repo>https://github.com/purpleworks-developer/cordova-plugin-modal.git</repo>
+
+    <engines>
+      <engine name="cordova" version=">=3.1.0" /><!-- Needs cordova/urlutil -->
+    </engines>
+
+</plugin>
