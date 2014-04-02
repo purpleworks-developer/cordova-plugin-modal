@@ -14,11 +14,12 @@
       <engine name="cordova" version=">=3.1.0" /><!-- Needs cordova/urlutil -->
     </engines>
 
+    <js-module src="www/modal.js" name="Modal">
+        <clobbers target="Modal" />
+    </js-module>
+
     <!-- android -->
     <platform name="android">
-        <js-module src="www/modal.js" name="Modal">
-            <clobbers target="modal" />
-        </js-module>
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Modal">
                 <param name="android-package" value="kr.co.purpleworks.cordova.modal"/>
@@ -26,7 +27,7 @@
         </config-file>
 
         <source-file src="src/android/Modal.java" target-dir="src/kr/co/purpleworks/cordova/modal" />
-        
+
 <!--         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 <!--         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 
@@ -50,9 +51,6 @@
 
     <!-- ios -->
     <platform name="ios">
-        <js-module src="www/modal.js" name="modal">
-            <clobbers target="modal" />
-        </js-module>
         <config-file target="config.xml" parent="/*">
             <feature name="modal">
                 <param name="ios-package" value="PPDModal" />

@@ -12,3 +12,5 @@ Modal.prototype = {
       exec(null,null,'Modal','close',[]);
   }
 }
+
+module.export = Modal;
