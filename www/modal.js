@@ -4,8 +4,8 @@ var modal = {
   open: function(url) {
     exec(null,null,'Modal','open',[url]);
   },
-  close: function() {
-    exec(null,null,'Modal','close',[]);
+  close: function(successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'Modal', 'close',[]);
   }
 }
 
