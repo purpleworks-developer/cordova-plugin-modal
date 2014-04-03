@@ -58,9 +58,12 @@
         </config-file>
 
         <header-file src="src/ios/PPDModal.h" />
-	    <source-file src="src/ios/PPDModal.m" />
+	      <source-file src="src/ios/PPDModal.m" />
 
-	    <framework src="CoreGraphics.framework" />
+        <header-file src="src/ios/PPDModalViewController.h" />
+        <source-file src="src/ios/PPDModalViewController.m" />
+
+        <resource-file src="PPDModalViewController.xib" />
     </platform>
 
 </plugin>
