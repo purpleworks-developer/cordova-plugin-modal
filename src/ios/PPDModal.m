@@ -15,23 +15,26 @@
 {
     CDVPluginResult* pluginResult = nil;
     NSString* url = [command.arguments objectAtIndex:0];
-    
+    NSString* callbackId = command.callbackId;
     PPDModalViewController *vc = [[PPDModalViewController alloc] init];
     
-    if (url) {
+    if (callbackId) {
+        [vc setParantCommandDelegate:self.commandDelegate];
+        [vc setCallbackId:callbackId];
+        
+    }
+    
+    if (![[NSNull null] isEqual:url]) {
         vc.startPage = url;
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
     else {
         vc.startPage = @"https://github.com/purpleworks-developer/cordova-plugin-modal";
-        pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsString:@"url was null"];
     }
     
     [self.viewController presentViewController:vc animated:YES completion:^{
         
     }];
     
-    [self.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
 }
 
 - (void)close:(CDVInvokedUrlCommand *)command
@@ -39,9 +42,25 @@
     CDVPluginResult* pluginResult = nil;
     
     if ([self.viewController isKindOfClass:[PPDModalViewController class]]) {
+        PPDModalViewController *vc = (PPDModalViewController*)self.viewController;
+        NSString* closeResultData = [command.arguments objectAtIndex:0];
+        
+        if (vc.callbackId && vc.parantCommandDelegate) {
+            CDVPluginResult* closeResult = nil;
+            if (![[NSNull null] isEqual:closeResultData]) {
+                closeResult =[CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:closeResultData];
+            }
+            else {
+                closeResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
+            }
+            
+            [vc.parantCommandDelegate sendPluginResult:closeResult callbackId:vc.callbackId];
+        }
+        
         [self.viewController dismissViewControllerAnimated:YES completion:^{
             
         }];
+        
         pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK];
     }
     else {
