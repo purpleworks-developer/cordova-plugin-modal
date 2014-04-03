@@ -9,5 +9,6 @@
 #import <Cordova/CDVViewController.h>
 
 @interface PPDModalViewController : CDVViewController
-
+@property (nonatomic, strong) NSString *callbackId;
+@property (nonatomic, weak) id <CDVCommandDelegate> parantCommandDelegate;
 @end
