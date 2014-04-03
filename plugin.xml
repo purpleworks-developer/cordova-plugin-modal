@@ -57,7 +57,7 @@
     <!-- ios -->
     <platform name="ios">
         <config-file target="config.xml" parent="/*">
-            <feature name="Modal">
+            <feature name="modal">
                 <param name="ios-package" value="PPDModal" />
             </feature>
         </config-file>
