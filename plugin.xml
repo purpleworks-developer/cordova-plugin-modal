@@ -63,7 +63,7 @@
         <header-file src="src/ios/PPDModalViewController.h" />
         <source-file src="src/ios/PPDModalViewController.m" />
 
-        <resource-file src="PPDModalViewController.xib" />
+        <resource-file src="src/ios/PPDModalViewController.xib" />
     </platform>
 
 </plugin>
