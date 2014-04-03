@@ -1,11 +1,11 @@
 var exec = require('cordova/exec');
 
 var modal = {
-  open: function(url) {
-    exec(null,null,'Modal','open',[url]);
+  open: function(successCallback, errorCallback, url) {
+    exec(successCallback, errorCallback, 'Modal','open',[url]);
   },
-  close: function() {
-    exec(null,null,'Modal','close',[]);
+  close: function(successCallback, errorCallback) {
+    exec(successCallback, errorCallback, 'Modal', 'close',[]);
   }
 }
 
