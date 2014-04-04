@@ -4,7 +4,7 @@ var modal = {
   open: function(successCallback, errorCallback, url) {
     exec(successCallback, errorCallback, 'Modal','open', [ url ]);
   },
-  close: function(successCallback, errorCallback, data) {
+  close: function(data) {
     exec(null, null, 'Modal', 'close', [ data ]);
   }
 }
