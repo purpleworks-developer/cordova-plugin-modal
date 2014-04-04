@@ -1,54 +1,25 @@
 package kr.co.purpleworks.cordova.modal;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaPlugin;
-import org.json.JSONArray;
-import org.json.JSONException;
+import kr.co.purpleworks.plugin_dev.R;
+import org.apache.cordova.CordovaActivity;
+import android.os.Bundle;
 
-import android.app.Activity;
-import android.content.Intent;
+public class ModalActivity extends CordovaActivity
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        this.overridePendingTransition(R.anim.bottom_in, R.anim.hold);
+        super.init();
 
-public class Modal extends CordovaPlugin {
-	private static final int ACTIVITY_MODAL = 1001;							// modal activity request code
-	public static final String PARAM_LOAD_URL = "loadUrl";					// passing data
-
-	private CallbackContext callbackContext;
-
-	@Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		this.callbackContext = callbackContext;
-
-        if (action.equals("open")) {
-            String url = args.getString(0);
-            Intent intent = new Intent(this.cordova.getActivity(), ModalActivity.class);
-            intent.putExtra(PARAM_LOAD_URL, url);
-
-            this.cordova.setActivityResultCallback(this);
-            this.cordova.getActivity().startActivityForResult(intent, ACTIVITY_MODAL);
-
-            return true;
-        } else if(action.equals("close")) {
-        	if (cordova.getActivity() instanceof ModalActivity) {
-        		Intent intent = new Intent();
-        		intent.putExtra("arg", args.toString());
-
-        		this.cordova.getActivity().setResult(Activity.RESULT_OK, intent);
-        		this.cordova.getActivity().finish();
-			} else {
-				callbackContext.error("Illegal Activity Exception");
-			}
-
-        	return true;
-        }
-        return false;
+        String url = getIntent().getStringExtra(Modal.PARAM_LOAD_URL);
+        super.loadUrl(url);
     }
 
-	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
-		if(requestCode == ACTIVITY_MODAL) {
-			if(resultCode == Activity.RESULT_OK) {
-				String arg = intent.getStringExtra("arg");
-				this.callbackContext.success(arg);
-			}
-		}
-	}
+    @Override
+    public void finish() {
+    	super.finish();
+    	this.overridePendingTransition(R.anim.hold, R.anim.bottom_out);
+    }
 }
