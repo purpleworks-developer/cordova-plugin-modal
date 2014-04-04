@@ -4,7 +4,6 @@ import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -22,18 +21,18 @@ public class Modal extends CordovaPlugin {
             String url = args.getString(0);
             Intent intent = new Intent(this.cordova.getActivity(), ModalActivity.class);
             intent.putExtra(PARAM_LOAD_URL, url);
+            this.cordova.setActivityResultCallback(this);
             this.cordova.getActivity().startActivityForResult(intent, ACTIVITY_MODAL);
             return true;
         } else if(action.equals("close")) {
         	if (cordova.getActivity() instanceof ModalActivity) {
-        		JSONObject jsonObject = args.getJSONObject(0);
         		Intent intent = new Intent();
-        		intent.putExtra("jsonString", jsonObject.toString());
+        		intent.putExtra("param", args.getString(0));
 
-        		this.cordova.getActivity().setResult(Activity.RESULT_OK);
+        		this.cordova.getActivity().setResult(Activity.RESULT_OK, intent);
         		this.cordova.getActivity().finish();
 			} else {
-				callbackContext.error("Illegal Argument Exception");
+				callbackContext.error("Not ModalActivity");
 			}
         	return true;
         }
@@ -43,14 +42,8 @@ public class Modal extends CordovaPlugin {
 	public void onActivityResult(int requestCode, int resultCode, Intent intent) {
 		if(requestCode == ACTIVITY_MODAL) {
 			if(resultCode == Activity.RESULT_OK) {
-				String jsonString = intent.getStringExtra("jsonString");
-				JSONObject jsonObject = null;
-				try {
-					jsonObject = new JSONObject(jsonString);
-					this.callbackContext.success(jsonObject);
-				} catch (JSONException e) {
-					e.printStackTrace();
-				}
+				String param = intent.getStringExtra("param");
+				this.callbackContext.success(param);
 			}
 		}
 	}
