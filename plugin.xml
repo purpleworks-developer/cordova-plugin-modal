@@ -33,6 +33,10 @@
         <resource-file src="src/android/res/anim/hold.xml" target="res/anim/hold.xml" />
         <resource-file src="src/android/res/anim/bottom_in.xml" target="res/anim/bottom_in.xml" />
         <resource-file src="src/android/res/anim/bottom_out.xml" target="res/anim/bottom_out.xml" />
+
+        <config-file target="AndroidManifest.xml" parent="application">
+            <activity android:name="kr.co.purpleworks.cordova.modal.ModalActivity"></activity>
+        </config-file>
 <!--         <source-file src="src/android/InAppBrowserDialog.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 <!--         <source-file src="src/android/InAppChromeClient.java" target-dir="src/org/apache/cordova/inappbrowser" /> -->
 
